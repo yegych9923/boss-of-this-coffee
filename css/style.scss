@@ -1,3 +1,8 @@
+@import url('../fonts/BuyanBold.ttf');
+@import url('../fonts/BuyanRegular.ttf');
+@import url('../fonts/BuyanThin.ttf');
+@import url('../fonts/Lemon Tuesday.otf');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @use "sass:math";
 
@@ -35,7 +40,7 @@ $container-mini-mobile: rem(540);
         }
     }
 }
-@mixin adaptive-value($property, $value, $min, $max) {
+@mixin adaptive-value-h($property, $value, $min, $max) {
     @if ($max == 0) {
         @media screen and (min-width: $min) {
             #{$property}: $value;
@@ -46,6 +51,27 @@ $container-mini-mobile: rem(540);
         }
     }
 }
+@mixin adaptive-value($property, $value-d, $value-t, $value-m, $value-sm, $value-esm) {
+    @media screen and (min-width: $desktop) {
+        #{$property}: $value-d;
+    }
+
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        #{$property}: $value-t;
+    }
+
+    @media screen and (min-width: $mobile) and (max-width: $tablet) {
+        #{$property}: $value-m;
+    }
+
+    @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
+        #{$property}: $value-sm;
+    }
+
+    @media screen and (max-width: $mini-mobile) {
+        #{$property}: $value-esm;
+    }
+}
 
 // Main
 body, html {
@@ -54,7 +80,8 @@ body, html {
     overflow-x: hidden;
 }
 * {
-    font-family: 'Roboto';
+    font-family: 'Montserrat';
+    box-sizing: border-box;
 }
 .container {
     margin: 0 auto;
@@ -62,3 +89,129 @@ body, html {
 }
 // /Main
 
+.anim-link {
+    background-image: linear-gradient(#000, #000);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% rem(2);
+    transition: background-size .2s;
+
+    &:hover {
+        background-size: 100% rem(2);
+        color: inherit;
+    }
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E6FFC6;
+    border-bottom: rem(2) solid #73FF42;
+    height: rem(54);
+    text-decoration: none !important;
+    position: fixed;
+    width: 100vw;
+    isolation: auto;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-brand {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none !important;
+        cursor: pointer;
+
+        &-logo {
+            width: rem(37);
+            height: rem(50);
+        }
+        &-title {
+            font-family: 'Buyan';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(28);
+            color: #000000;
+            margin-left: rem(22);
+            text-decoration: none !important;
+
+            &:hover, &:active {
+                color: #000;
+            }
+        }
+    }
+    &-menu {
+        @include adaptive-value(display, none, none, block, block, block);
+        width: rem(32);
+        height: rem(32);
+    }
+    &-buttons {
+        @include adaptive-value(display, flex, flex, none, none, none);
+        flex-direction: row;
+        list-style: none;
+        margin: 0 rem(-16);
+
+        &-item {
+            margin: 0 rem(16);
+            color: #000;
+            text-decoration: none !important;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(16);
+            letter-spacing: -0.01rem;
+            padding: rem(4) 0;
+        }
+    }
+}
+.hero {
+    margin-top: rem(54);
+    padding: rem(30) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #FDFFE6 100%, rgba(244, 250, 179, 0) 100%, #FFFFFF 100%);
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-img {
+        height: rem(460);
+        @include adaptive-value(display, block, block, none, none, none);
+    }
+    &-desc {
+        margin-left: rem(50);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        &-title {
+            font-family: 'Lemon Tuesday';
+            font-style: normal;
+            font-weight: 400;
+            @include adaptive-value(font-size, rem(44), rem(40), rem(40), rem(40), rem(40));
+            line-height: rem(66);
+            letter-spacing: 0.03rem;
+            color: #000000;
+        }
+        &-text {
+            margin-top: rem(40);
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            @include adaptive-value(font-size, rem(20), rem(18), rem(18), rem(18), rem(16));
+            line-height: rem(24);
+            letter-spacing: 0.03rem;
+            color: #000000;
+        }
+    }
+}
