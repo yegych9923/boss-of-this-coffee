@@ -1,0 +1,24 @@
+Я по IT-клубу
+
+Я имею навыки в: адаптивной вёрстке с использованием HTML, SCSS/CSS с Bootstrap, JS с JQuery; SEO; дизайне (в Figma); программировании на Python и Java
+
+В октябре 2021 создал адаптивный, рабочий лендинг с отправкой заявок для реального бизнеса: https://rbtglazov.ru
+
+Дизайны:
+https://www.figma.com/file/tZG3tWI3Qpd4Vucq5b9rwW/%D0%A0%D0%B5%D0%BC%D0%91%D1%8B%D1%82%D0%A2%D0%B5%D1%85
+https://www.figma.com/file/QELKGX5u8333Z6ZfE53tNg/Untitled
+
+Самые лучшие мои программы на Python прикладываю в архив.
+
+https://cloud.mail.ru/public/41WQ/QnARZqWsw
+
+Для обучения WEB'у советую Youtube-каналы:
+ - Фрилансер по жизни;
+ - BrainsCloud;
+ - WAYUP;
+ - ВебКадеми;
+ - WebDesign Master.
+
+НЕ советую к просмотру:
+ - Хауди Хо;
+ - Гоша Дударь.
