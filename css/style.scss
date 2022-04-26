@@ -5,102 +5,146 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @use "sass:math";
-
 @function rem($n) {
     @return ($n / $base-font) * 1rem;
 }
 
 $base-font: 16;
-
 $desktop: rem(1200);
 $tablet: rem(992);
 $mobile: rem(768);
 $mini-mobile: rem(576);
-
 $container-desktop: rem(1140);
 $container-tablet: rem(960);
 $container-mobile: rem(720);
 $container-mini-mobile: rem(540);
-
 @mixin adaptive-container-width() {
-    @media screen and (min-width: $desktop) { width: $container-desktop; }
-    @media screen and (min-width: $tablet) and (max-width: $desktop) { width: $container-tablet; }
-    @media screen and (min-width: $mobile) and (max-width: $tablet) { width: $container-mobile }
-    @media screen and (min-width: $mini-mobile) and (max-width: $mobile) { width: $container-mini-mobile; }
-    @media screen and (max-width: $mini-mobile) { width: 320px; }
+    @media screen and (min-width: $desktop) {
+        width: $container-desktop;
+    }
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        width: $container-tablet;
+    }
+    @media screen and (min-width: $mobile) and (max-width: $tablet) {
+        width: $container-mobile
+    }
+    @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
+        width: $container-mini-mobile;
+    }
+    @media screen and (max-width: $mini-mobile) {
+        width: 320px;
+    }
 }
-@mixin adaptive-display($display, $min, $max) {
-    @if ($max == "none") {
+
+@mixin adaptive-display($display,
+$min,
+$max) {
+    @if ($max=="none") {
         @media screen and (min-width: $min) {
             display: $display;
         }
-    } @else {
+    }
+    @else {
         @media screen and (min-width: $min) and (max-width: $max) {
             display: $display;
         }
     }
 }
-@mixin adaptive-value-h($property, $value, $min, $max) {
-    @if ($max == 0) {
+
+@mixin adaptive-value-h($property,
+$value,
+$min,
+$max) {
+    @if ($max==0) {
         @media screen and (min-width: $min) {
             #{$property}: $value;
         }
-    } @else {
+    }
+    @else {
         @media screen and (min-width: $min) and (max-width: $max) {
             #{$property}: $value;
         }
     }
 }
-@mixin adaptive-value($property, $value-d, $value-t, $value-m, $value-sm, $value-esm) {
+
+@mixin adaptive-value($property,
+$value-d,
+$value-t,
+$value-m,
+$value-sm,
+$value-esm) {
     @media screen and (min-width: $desktop) {
         #{$property}: $value-d;
     }
-
     @media screen and (min-width: $tablet) and (max-width: $desktop) {
         #{$property}: $value-t;
     }
-
     @media screen and (min-width: $mobile) and (max-width: $tablet) {
         #{$property}: $value-m;
     }
-
     @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
         #{$property}: $value-sm;
     }
-
     @media screen and (max-width: $mini-mobile) {
         #{$property}: $value-esm;
     }
 }
 
 // Main
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
+
 * {
     font-family: 'Montserrat';
     box-sizing: border-box;
 }
+
 .container {
     margin: 0 auto;
     @include adaptive-container-width();
 }
-// /Main
 
+@font-face {
+    font-family: 'Buyan';
+    src: url('../fonts/BuyanBold.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Buyan';
+    src: url('../fonts/BuyanRegular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Buyan';
+    src: url('../fonts/BuyanThin.ttf');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Lemon Tuesday';
+    src: url('../fonts/Lemon Tuesday.otf');
+    font-weight: 400;
+}
+
+// /Main
 .anim-link {
     background-image: linear-gradient(#000, #000);
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: 0% rem(2);
     transition: background-size .2s;
-
     &:hover {
         background-size: 100% rem(2);
         color: inherit;
     }
 }
+
 .header {
     display: flex;
     justify-content: center;
@@ -112,7 +156,7 @@ body, html {
     position: fixed;
     width: 100vw;
     isolation: auto;
-
+    z-index: 999;
     .container {
         display: flex;
         flex-direction: row;
@@ -125,7 +169,6 @@ body, html {
         align-items: center;
         text-decoration: none !important;
         cursor: pointer;
-
         &-logo {
             width: rem(37);
             height: rem(50);
@@ -138,23 +181,32 @@ body, html {
             color: #000000;
             margin-left: rem(22);
             text-decoration: none !important;
-
-            &:hover, &:active {
+            &:hover,
+            &:active {
                 color: #000;
             }
         }
     }
     &-menu {
-        @include adaptive-value(display, none, none, block, block, block);
+        @include adaptive-value(display,
+        none,
+        none,
+        block,
+        block,
+        block);
         width: rem(32);
         height: rem(32);
     }
     &-buttons {
-        @include adaptive-value(display, flex, flex, none, none, none);
+        @include adaptive-value(display,
+        flex,
+        flex,
+        none,
+        none,
+        none);
         flex-direction: row;
         list-style: none;
         margin: 0 rem(-16);
-
         &-item {
             margin: 0 rem(16);
             color: #000;
@@ -168,50 +220,197 @@ body, html {
         }
     }
 }
+
 .hero {
+    //@include adaptive-value(padding, rem(140) 0, rem(140) 0, rem(140) 0, rem(140) 0, rem(140) 0);
+    padding: rem(140) 0;
     margin-top: rem(54);
-    padding: rem(30) 0;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, #FDFFE6 100%, rgba(244, 250, 179, 0) 100%, #FFFFFF 100%);
-
     .container {
-        display: flex;
+        display: inline-block;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        position: relative;
     }
     &-img {
-        height: rem(460);
-        @include adaptive-value(display, block, block, none, none, none);
+        @include adaptive-value(height,
+        rem(460),
+        rem(400),
+        rem(380),
+        none,
+        none);
+        @include adaptive-value(left,
+        rem(0),
+        0,
+        rem(-60),
+        none,
+        none);
+        @include adaptive-value(display,
+        flex,
+        flex,
+        flex,
+        none,
+        none);
+        @include adaptive-value(opacity,
+        1,
+        1,
+        0.5,
+        none,
+        none);
+        margin: auto 0;
+        position: absolute;
+        z-index: 0;
+        isolation: auto;
+        top: 50%;
+        transform: translate(0%, -50%);
     }
     &-desc {
-        margin-left: rem(50);
+        @include adaptive-value(width,
+        50%,
+        60%,
+        60%,
+        100%,
+        100%);
+        @include adaptive-value(float,
+        right,
+        right,
+        right,
+        none,
+        none);
+        @include adaptive-value(margin-left,
+        0,
+        0,
+        0,
+        auto,
+        auto);
+        @include adaptive-value(margin-right,
+        0,
+        0,
+        0,
+        auto,
+        auto);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-top: auto;
-        margin-bottom: auto;
-
+        margin: auto 0;
+        z-index: 1;
         &-title {
+            @include adaptive-value(font-size,
+            rem(44),
+            rem(40),
+            rem(40),
+            rem(40),
+            rem(40));
             font-family: 'Lemon Tuesday';
             font-style: normal;
             font-weight: 400;
-            @include adaptive-value(font-size, rem(44), rem(40), rem(40), rem(40), rem(40));
             line-height: rem(66);
             letter-spacing: 0.03rem;
             color: #000000;
         }
         &-text {
+            @include adaptive-value(font-size,
+            rem(20),
+            rem(18),
+            rem(18),
+            rem(18),
+            rem(16));
             margin-top: rem(40);
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 400;
-            @include adaptive-value(font-size, rem(20), rem(18), rem(18), rem(18), rem(16));
             line-height: rem(24);
             letter-spacing: 0.03rem;
             color: #000000;
         }
     }
 }
+
+.diskounts {
+    background: #D3FFA7;
+    padding: rem(36) 0;
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &-top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &-title {
+            font-family: 'Buyan';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(40);
+            letter-spacing: 0.03rem;
+            color: #000000;
+        }
+        &-button {
+            padding: rem(7) rem(20);
+            background: #E2FFBE;
+            border: rem(2) solid #98C967;
+            box-shadow: 0px 0px rem(20) rgba(0, 0, 0, 0.08);
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            font-size: rem(17);
+            color: #000000;
+            text-decoration: none !important;
+            cursor: pointer;
+            margin-left: rem(50);
+            &:hover,
+            &:active {
+                text-decoration: none !important;
+                color: #000000;
+            }
+        }
+    }
+    &-catalog {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.catalog {
+    overflow-x: scroll;
+    float: left;
+    margin: 0 rem(-15);
+    // TODO: СДЕЛАТЬ КАТАЛОГ И НЕ ЗАБРОСИТЬ ПРОЕКТ
+    &__item {
+        position: relative;
+        min-width: rem(256);
+        height: rem(284);
+        background: #FFFFFF;
+        margin: 0 rem(15);
+        &-diskount {
+            position: absolute;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(16);
+            padding: 0 rem(2);
+            color: #FFFFFF;
+            background: #FF6230;
+            box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.25);
+            top: rem(5);
+            right: rem(5);
+        }
+        &-container {}
+        &-title {}
+        &-img {}
+        &-info {
+            &-volume {}
+            &-costs {
+                &-costs {}
+                &-diskount {}
+            }
+        }
+    }
+}
+
+// TODO:     @include adaptive-value(float, none, none, none, none, none);

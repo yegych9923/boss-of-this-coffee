@@ -5,7 +5,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @use "sass:math";
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -51,6 +52,30 @@ body, html {
   }
 }
 
+@font-face {
+  font-family: 'Buyan';
+  src: url("../fonts/BuyanBold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Buyan';
+  src: url("../fonts/BuyanRegular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Buyan';
+  src: url("../fonts/BuyanThin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Lemon Tuesday';
+  src: url("../fonts/Lemon Tuesday.otf");
+  font-weight: 400;
+}
+
 .anim-link {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(#000));
   background-image: linear-gradient(#000, #000);
@@ -83,6 +108,7 @@ body, html {
   position: fixed;
   width: 100vw;
   isolation: auto;
+  z-index: 999;
 }
 
 .header .container {
@@ -226,8 +252,8 @@ body, html {
 }
 
 .hero {
+  padding: 8.75rem 0;
   margin-top: 3.375rem;
-  padding: 1.875rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -242,9 +268,7 @@ body, html {
 }
 
 .hero .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -255,27 +279,100 @@ body, html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .hero-img {
-  height: 28.75rem;
+  margin: auto 0;
+  position: absolute;
+  z-index: 0;
+  isolation: auto;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
 }
 
 @media screen and (min-width: 75rem) {
   .hero-img {
-    display: block;
+    height: 28.75rem;
   }
 }
 
 @media screen and (min-width: 62rem) and (max-width: 75rem) {
   .hero-img {
-    display: block;
+    height: 25rem;
   }
 }
 
 @media screen and (min-width: 48rem) and (max-width: 62rem) {
   .hero-img {
-    display: none;
+    height: 23.75rem;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-img {
+    height: none;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-img {
+    height: none;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-img {
+    left: 0rem;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-img {
+    left: 0;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-img {
+    left: -3.75rem;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-img {
+    left: none;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-img {
+    left: none;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 
@@ -291,8 +388,37 @@ body, html {
   }
 }
 
+@media screen and (min-width: 75rem) {
+  .hero-img {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-img {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-img {
+    opacity: 0.5;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-img {
+    opacity: none;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-img {
+    opacity: none;
+  }
+}
+
 .hero-desc {
-  margin-left: 3.125rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -303,8 +429,128 @@ body, html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto 0;
+  z-index: 1;
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-desc {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-desc {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-desc {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-desc {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-desc {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-desc {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-desc {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-desc {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-desc {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-desc {
+    float: none;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-desc {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-desc {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-desc {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-desc {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-desc {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero-desc {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .hero-desc {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .hero-desc {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .hero-desc {
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .hero-desc {
+    margin-right: auto;
+  }
 }
 
 .hero-desc-title {
@@ -384,5 +630,105 @@ body, html {
   .hero-desc-text {
     font-size: 1rem;
   }
+}
+
+.diskounts {
+  background: #D3FFA7;
+  padding: 2.25rem 0;
+}
+
+.diskounts .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.diskounts-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.diskounts-top-title {
+  font-family: 'Buyan';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: 0.03rem;
+  color: #000000;
+}
+
+.diskounts-top-button {
+  padding: 0.4375rem 1.25rem;
+  background: #E2FFBE;
+  border: 0.125rem solid #98C967;
+  -webkit-box-shadow: 0px 0px 1.25rem rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 0px 1.25rem rgba(0, 0, 0, 0.08);
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.0625rem;
+  color: #000000;
+  text-decoration: none !important;
+  cursor: pointer;
+  margin-left: 3.125rem;
+}
+
+.diskounts-top-button:hover, .diskounts-top-button:active {
+  text-decoration: none !important;
+  color: #000000;
+}
+
+.diskounts-catalog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.catalog {
+  overflow-x: scroll;
+  float: left;
+  margin: 0 -0.9375rem;
+}
+
+.catalog__item {
+  position: relative;
+  min-width: 16rem;
+  height: 17.75rem;
+  background: #FFFFFF;
+  margin: 0 0.9375rem;
+}
+
+.catalog__item-diskount {
+  position: absolute;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0 0.125rem;
+  color: #FFFFFF;
+  background: #FF6230;
+  -webkit-box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.25);
+          box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.25);
+  top: 0.3125rem;
+  right: 0.3125rem;
 }
 /*# sourceMappingURL=style.css.map */
