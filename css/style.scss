@@ -5,146 +5,239 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @use "sass:math";
+
 @function rem($n) {
     @return ($n / $base-font) * 1rem;
 }
 
 $base-font: 16;
+
 $desktop: rem(1200);
 $tablet: rem(992);
 $mobile: rem(768);
 $mini-mobile: rem(576);
+$micro-mobile: rem(360);
+
 $container-desktop: rem(1140);
 $container-tablet: rem(960);
 $container-mobile: rem(720);
 $container-mini-mobile: rem(540);
+$container-micro-mobile: rem(360);
+
 @mixin adaptive-container-width() {
     @media screen and (min-width: $desktop) {
-        width: $container-desktop;
+        max-width: $container-desktop;
     }
+
     @media screen and (min-width: $tablet) and (max-width: $desktop) {
-        width: $container-tablet;
+        max-width: $container-tablet;
     }
+
     @media screen and (min-width: $mobile) and (max-width: $tablet) {
-        width: $container-mobile
+        max-width: $container-mobile;
     }
+
     @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
-        width: $container-mini-mobile;
+        max-width: $container-mini-mobile;
     }
-    @media screen and (max-width: $mini-mobile) {
-        width: 320px;
+
+    @media screen and (max-width: $mini-mobile) and (min-width: 0px) {
+        max-width: $container-micro-mobile;
     }
 }
-
-@mixin adaptive-display($display,
-$min,
-$max) {
-    @if ($max=="none") {
+@mixin adaptive-display($display, $min, $max) {
+    @if ($max == "none") {
         @media screen and (min-width: $min) {
             display: $display;
         }
-    }
-    @else {
+    } @else {
         @media screen and (min-width: $min) and (max-width: $max) {
             display: $display;
         }
     }
 }
-
-@mixin adaptive-value-h($property,
-$value,
-$min,
-$max) {
-    @if ($max==0) {
+@mixin adaptive-value-h($property, $value, $min, $max) {
+    @if ($max == 0) {
         @media screen and (min-width: $min) {
             #{$property}: $value;
         }
-    }
-    @else {
+    } @else {
         @media screen and (min-width: $min) and (max-width: $max) {
             #{$property}: $value;
         }
     }
 }
-
-@mixin adaptive-value($property,
-$value-d,
-$value-t,
-$value-m,
-$value-sm,
-$value-esm) {
+@mixin adaptive-value($property, $value-d, $value-t, $value-m, $value-sm, $value-esm) {
     @media screen and (min-width: $desktop) {
         #{$property}: $value-d;
     }
+
     @media screen and (min-width: $tablet) and (max-width: $desktop) {
         #{$property}: $value-t;
     }
+
     @media screen and (min-width: $mobile) and (max-width: $tablet) {
         #{$property}: $value-m;
     }
+
     @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
         #{$property}: $value-sm;
     }
+
     @media screen and (max-width: $mini-mobile) {
         #{$property}: $value-esm;
     }
 }
+@mixin row-catalog($catalog-btn-switch, $slider-color, $buttons-color, $catalog-btn) {
+    margin-top: rem(20);
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &-top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &-title {
+            @include adaptive-value(font-size, rem(40), rem(38), rem(36), rem(36), rem(32));
+            font-family: 'Buyan';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(40);
+            letter-spacing: 0.03rem;
+            color: #000000;
+        }
+        &-button {
+            @if ($catalog-btn-switch == true) {
+                @include adaptive-value(display, block, block, block, none, none);
+            }
+            @else {
+                display: none;
+            }
+
+            padding: rem(6) rem(20);
+            background: $catalog-btn;
+            border: rem(2) solid #98C967;
+            box-shadow: 0px 0px rem(20) rgba(0, 0, 0, 0.08);
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            font-size: rem(17);
+            color: #000000;
+            text-decoration: none !important;
+            cursor: pointer;
+            margin-left: rem(50);
+
+            &:hover, &:active {
+                text-decoration: none !important;
+                color: #000000;
+            }
+        }
+    }
+    &-catalog {
+        margin-top: rem(20);
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        &-items {
+            @include adaptive-container-width();
+            display: flex;
+            flex-direction: row;
+            overflow-x: scroll;
+            float: left;
+            gap: rem(30);
+            padding-bottom: rem(26);
+            position: relative;
+    
+            &::-webkit-scrollbar {
+                width: 7px;
+                background: #FFFFFF;
+            }
+            &::-webkit-scrollbar-thumb {
+                width: 7px;
+                background: $slider-color;
+            }
+            &::-webkit-scrollbar-button {
+                display: none;
+            }
+        }
+        &-button {
+            position: absolute;
+            top: 46%;
+            transform: translate(0%, -50%);
+            z-index: 99;
+            height: rem(74);
+            color: $buttons-color;
+    
+            &-left {
+                left: rem(-80);
+            }
+            &-right {
+                right: rem(-80);
+            }
+        }
+    }
+}
 
 // Main
-body,
-html {
+body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
-
 * {
     font-family: 'Montserrat';
     box-sizing: border-box;
 }
-
 .container {
     margin: 0 auto;
     @include adaptive-container-width();
 }
-
 @font-face {
     font-family: 'Buyan';
     src: url('../fonts/BuyanBold.ttf');
     font-weight: 700;
+    font-style: 'normal';
 }
-
 @font-face {
     font-family: 'Buyan';
     src: url('../fonts/BuyanRegular.ttf');
     font-weight: 400;
+    font-style: 'normal';
 }
-
 @font-face {
     font-family: 'Buyan';
     src: url('../fonts/BuyanThin.ttf');
     font-weight: 100;
+    font-style: 'normal';
 }
-
 @font-face {
     font-family: 'Lemon Tuesday';
     src: url('../fonts/Lemon Tuesday.otf');
     font-weight: 400;
+    font-style: 'normal';
 }
-
 // /Main
+
 .anim-link {
     background-image: linear-gradient(#000, #000);
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: 0% rem(2);
     transition: background-size .2s;
+
     &:hover {
         background-size: 100% rem(2);
         color: inherit;
     }
 }
-
 .header {
     display: flex;
     justify-content: center;
@@ -157,11 +250,13 @@ html {
     width: 100vw;
     isolation: auto;
     z-index: 999;
+
     .container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        margin: 0 auto;
     }
     &-brand {
         display: flex;
@@ -169,6 +264,7 @@ html {
         align-items: center;
         text-decoration: none !important;
         cursor: pointer;
+
         &-logo {
             width: rem(37);
             height: rem(50);
@@ -181,32 +277,23 @@ html {
             color: #000000;
             margin-left: rem(22);
             text-decoration: none !important;
-            &:hover,
-            &:active {
+
+            &:hover, &:active {
                 color: #000;
             }
         }
     }
     &-menu {
-        @include adaptive-value(display,
-        none,
-        none,
-        block,
-        block,
-        block);
+        @include adaptive-value(display, none, none, block, block, block);
         width: rem(32);
         height: rem(32);
     }
     &-buttons {
-        @include adaptive-value(display,
-        flex,
-        flex,
-        none,
-        none,
-        none);
+        @include adaptive-value(display, flex, flex, none, none, none);
         flex-direction: row;
         list-style: none;
         margin: 0 rem(-16);
+
         &-item {
             margin: 0 rem(16);
             color: #000;
@@ -220,15 +307,14 @@ html {
         }
     }
 }
-
 .hero {
-    //@include adaptive-value(padding, rem(140) 0, rem(140) 0, rem(140) 0, rem(140) 0, rem(140) 0);
-    padding: rem(140) 0;
+    @include adaptive-value(padding, rem(140) 0, rem(140) 0, rem(120) 0, rem(110) 0, rem(100) 0);
     margin-top: rem(54);
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, #FDFFE6 100%, rgba(244, 250, 179, 0) 100%, #FFFFFF 100%);
+
     .container {
         display: inline-block;
         flex-direction: row;
@@ -237,30 +323,10 @@ html {
         position: relative;
     }
     &-img {
-        @include adaptive-value(height,
-        rem(460),
-        rem(400),
-        rem(380),
-        none,
-        none);
-        @include adaptive-value(left,
-        rem(0),
-        0,
-        rem(-60),
-        none,
-        none);
-        @include adaptive-value(display,
-        flex,
-        flex,
-        flex,
-        none,
-        none);
-        @include adaptive-value(opacity,
-        1,
-        1,
-        0.5,
-        none,
-        none);
+        @include adaptive-value(height, rem(460), rem(400), rem(380), none, none);
+        @include adaptive-value(left, rem(0), 0, rem(-60), none, none);
+        @include adaptive-value(display, flex, flex, flex, none, none);
+        @include adaptive-value(opacity, 1, 1, 0.5, none, none);
         margin: auto 0;
         position: absolute;
         z-index: 0;
@@ -269,42 +335,18 @@ html {
         transform: translate(0%, -50%);
     }
     &-desc {
-        @include adaptive-value(width,
-        50%,
-        60%,
-        60%,
-        100%,
-        100%);
-        @include adaptive-value(float,
-        right,
-        right,
-        right,
-        none,
-        none);
-        @include adaptive-value(margin-left,
-        0,
-        0,
-        0,
-        auto,
-        auto);
-        @include adaptive-value(margin-right,
-        0,
-        0,
-        0,
-        auto,
-        auto);
+        @include adaptive-value(width, 50%, 60%, 60%, 100%, 100%);
+        @include adaptive-value(float, right, right, right, none, none);
+        @include adaptive-value(margin-left, 0, 0, 0, auto, auto);
+        @include adaptive-value(margin-right, 0, 0, 0, auto, auto);
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: auto 0;
         z-index: 1;
+
         &-title {
-            @include adaptive-value(font-size,
-            rem(44),
-            rem(40),
-            rem(40),
-            rem(40),
-            rem(40));
+            @include adaptive-value(font-size, rem(44), rem(40), rem(40), rem(40), rem(40));
             font-family: 'Lemon Tuesday';
             font-style: normal;
             font-weight: 400;
@@ -313,12 +355,7 @@ html {
             color: #000000;
         }
         &-text {
-            @include adaptive-value(font-size,
-            rem(20),
-            rem(18),
-            rem(18),
-            rem(18),
-            rem(16));
+            @include adaptive-value(font-size, rem(20), rem(18), rem(18), rem(18), rem(16));
             margin-top: rem(40);
             font-family: 'Montserrat';
             font-style: normal;
@@ -329,88 +366,124 @@ html {
         }
     }
 }
-
 .diskounts {
+    @include row-catalog(true, #6E744D, #000000, #E2FFBE);
     background: #D3FFA7;
     padding: rem(36) 0;
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    &-top {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        &-title {
-            font-family: 'Buyan';
-            font-style: normal;
-            font-weight: 700;
-            font-size: rem(40);
-            letter-spacing: 0.03rem;
-            color: #000000;
-        }
-        &-button {
-            padding: rem(7) rem(20);
-            background: #E2FFBE;
-            border: rem(2) solid #98C967;
-            box-shadow: 0px 0px rem(20) rgba(0, 0, 0, 0.08);
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 500;
-            font-size: rem(17);
-            color: #000000;
-            text-decoration: none !important;
-            cursor: pointer;
-            margin-left: rem(50);
-            &:hover,
-            &:active {
-                text-decoration: none !important;
-                color: #000000;
-            }
-        }
-    }
-    &-catalog {
-        display: flex;
-        flex-direction: row;
-    }
 }
-
 .catalog {
-    overflow-x: scroll;
-    float: left;
-    margin: 0 rem(-15);
     // TODO: СДЕЛАТЬ КАТАЛОГ И НЕ ЗАБРОСИТЬ ПРОЕКТ
+
     &__item {
         position: relative;
         min-width: rem(256);
-        height: rem(284);
+        min-height: rem(290);
         background: #FFFFFF;
-        margin: 0 rem(15);
+        align-items: center;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.13);
+
         &-diskount {
             position: absolute;
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 700;
             font-size: rem(16);
-            padding: 0 rem(2);
+            padding: 0 rem(4);
             color: #FFFFFF;
             background: #FF6230;
             box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.25);
             top: rem(5);
             right: rem(5);
+            contain: none;
         }
-        &-container {}
-        &-title {}
-        &-img {}
+        &-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: absolute;
+            left: rem(36);
+            right: rem(40);
+            top: rem(20);
+            bottom: rem(20);
+        }
+        &-title {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(18);
+            line-height: rem(22);
+            color: #000000;
+            width: 90%;
+        }
+        &-img {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
         &-info {
-            &-volume {}
+            &-volume {
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 400;
+                font-size: rem(16);
+                color: #000000;
+                margin-bottom: rem(1);
+            }
             &-costs {
-                &-costs {}
-                &-diskount {}
+                display: flex;
+                flex-direction: row;
+
+                &-cost {
+                    font-family: 'Montserrat';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: rem(16);
+                    color: #000000;
+                }
+                &-diskount {
+                    font-family: 'Montserrat';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: rem(16);
+                    color: #656565;
+                    margin-left: rem(10);
+                }
             }
         }
     }
+}
+.info {
+    @include adaptive-value(display, flex, flex, flex, none, none);
+    justify-content: center;
+    margin-top: rem(80);
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-img {
+        background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0) 50%, #FFFFFF 100%), url('../img/info-img.jpg') 50% 50%;
+        background-size: cover;
+        min-width: 45%;
+        height: rem(280);
+    }
+    &-text {
+        @include adaptive-value(font-size, rem(16), rem(16), rem(14), none, none);
+        max-width: 50%;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        line-height: rem(20);
+        color: #000000;
+    }
+}
+.row-catalog {
+    @include row-catalog(true, #93DD4A, #799343, #FFFFFF);
+    margin-top: rem(80);
 }
 
 // TODO:     @include adaptive-value(float, none, none, none, none, none);
