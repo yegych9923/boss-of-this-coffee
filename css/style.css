@@ -666,7 +666,6 @@ body, html {
 }
 
 .diskounts {
-  margin-top: 1.25rem;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -851,12 +850,12 @@ body, html {
 }
 
 .diskounts-catalog-items::-webkit-scrollbar {
-  width: 7px;
+  width: 0.4375rem;
   background: #FFFFFF;
 }
 
 .diskounts-catalog-items::-webkit-scrollbar-thumb {
-  width: 7px;
+  width: 0.4375rem;
   background: #6E744D;
 }
 
@@ -1090,7 +1089,6 @@ body, html {
 }
 
 .row-catalog {
-  margin-top: 1.25rem;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1274,12 +1272,12 @@ body, html {
 }
 
 .row-catalog-catalog-items::-webkit-scrollbar {
-  width: 7px;
+  width: 0.4375rem;
   background: #FFFFFF;
 }
 
 .row-catalog-catalog-items::-webkit-scrollbar-thumb {
-  width: 7px;
+  width: 0.4375rem;
   background: #93DD4A;
 }
 
@@ -1303,5 +1301,286 @@ body, html {
 
 .row-catalog-catalog-button-right {
   right: -5rem;
+}
+
+.vacancies {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 5rem;
+}
+
+.vacancies .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.vacancies-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.vacancies-top-title {
+  font-family: 'Buyan';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: 0.03rem;
+  color: #000000;
+}
+
+@media screen and (min-width: 75rem) {
+  .vacancies-top-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .vacancies-top-title {
+    font-size: 2.375rem;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .vacancies-top-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .vacancies-top-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .vacancies-top-title {
+    font-size: 2rem;
+  }
+}
+
+.vacancies-top-button {
+  display: none;
+  padding: 0.375rem 1.25rem;
+  background: none;
+  border: 0.125rem solid #98C967;
+  -webkit-box-shadow: 0px 0px 1.25rem rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 0px 1.25rem rgba(0, 0, 0, 0.08);
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.0625rem;
+  color: #000000;
+  text-decoration: none !important;
+  cursor: pointer;
+  margin-left: 3.125rem;
+}
+
+.vacancies-top-button:hover, .vacancies-top-button:active {
+  text-decoration: none !important;
+  color: #000000;
+}
+
+.vacancies-catalog {
+  margin-top: 1.25rem;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.vacancies-catalog-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow-x: scroll;
+  float: left;
+  gap: 1.875rem;
+  padding-bottom: 1.625rem;
+  position: relative;
+}
+
+@media screen and (min-width: 75rem) {
+  .vacancies-catalog-items {
+    max-width: 71.25rem;
+  }
+}
+
+@media screen and (min-width: 62rem) and (max-width: 75rem) {
+  .vacancies-catalog-items {
+    max-width: 60rem;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .vacancies-catalog-items {
+    max-width: 45rem;
+  }
+}
+
+@media screen and (min-width: 36rem) and (max-width: 48rem) {
+  .vacancies-catalog-items {
+    max-width: 33.75rem;
+  }
+}
+
+@media screen and (max-width: 36rem) and (min-width: 0px) {
+  .vacancies-catalog-items {
+    max-width: 22.5rem;
+  }
+}
+
+.vacancies-catalog-items::-webkit-scrollbar {
+  width: 0.4375rem;
+  background: #FFFFFF;
+}
+
+.vacancies-catalog-items::-webkit-scrollbar-thumb {
+  width: 0.4375rem;
+  background: #93DD4A;
+}
+
+.vacancies-catalog-items::-webkit-scrollbar-button {
+  display: none;
+}
+
+.vacancies-catalog-button {
+  position: absolute;
+  top: 46%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  z-index: 99;
+  height: 4.625rem;
+  color: #799343;
+}
+
+.vacancies-catalog-button-left {
+  left: -5rem;
+}
+
+.vacancies-catalog-button-right {
+  right: -5rem;
+}
+
+.vacancies__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1.25rem 1.875rem;
+  position: relative;
+  min-width: 16rem;
+  min-height: 18.125rem;
+  background: url("../img/vacancies-back.jpg") 50% 50%;
+  background-size: cover;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.13);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.13);
+}
+
+.vacancies__item-container {
+  min-width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.vacancies__item-title {
+  min-width: 100%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  text-shadow: 0px 0px 1.25rem rgba(0, 0, 0, 0.08);
+}
+
+.vacancies__item-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625rem;
+  min-width: 100%;
+}
+
+.vacancies__item-info-preexp {
+  min-width: 100%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.vacancies__item-info-wage {
+  min-width: 100%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.vacancies__item-info-btn {
+  min-width: 100%;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: #CBDC88;
+  border: 1px solid #739650;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: #000000;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.vacancies__item-info-btn:hover, .vacancies__item-info-btn:active {
+  color: #000;
 }
 /*# sourceMappingURL=style.css.map */

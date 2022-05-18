@@ -89,7 +89,6 @@ $container-micro-mobile: rem(360);
     }
 }
 @mixin row-catalog($catalog-btn-switch, $slider-color, $buttons-color, $catalog-btn) {
-    margin-top: rem(20);
     position: relative;
     display: flex;
     justify-content: center;
@@ -114,7 +113,7 @@ $container-micro-mobile: rem(360);
             color: #000000;
         }
         &-button {
-            @if ($catalog-btn-switch == true) {
+            @if ($catalog-btn-switch == 'true') {
                 @include adaptive-value(display, block, block, block, none, none);
             }
             @else {
@@ -157,11 +156,11 @@ $container-micro-mobile: rem(360);
             position: relative;
     
             &::-webkit-scrollbar {
-                width: 7px;
+                width: rem(7);
                 background: #FFFFFF;
             }
             &::-webkit-scrollbar-thumb {
-                width: 7px;
+                width: rem(7);
                 background: $slider-color;
             }
             &::-webkit-scrollbar-button {
@@ -367,7 +366,7 @@ body, html {
     }
 }
 .diskounts {
-    @include row-catalog(true, #6E744D, #000000, #E2FFBE);
+    @include row-catalog('true', #6E744D, #000000, #E2FFBE);
     background: #D3FFA7;
     padding: rem(36) 0;
 }
@@ -482,8 +481,84 @@ body, html {
     }
 }
 .row-catalog {
-    @include row-catalog(true, #93DD4A, #799343, #FFFFFF);
+    @include row-catalog('true', #93DD4A, #799343, #FFFFFF);
     margin-top: rem(80);
+}
+.vacancies {
+    @include row-catalog(none, #93DD4A, #799343, none);
+    margin-top: rem(80);
+
+    &__item {
+        display: flex;
+        justify-content: center;
+        padding: rem(20) rem(30);
+        position: relative;
+        min-width: rem(256);
+        min-height: rem(290);
+        background: url('../img/vacancies-back.jpg') 50% 50%;
+        background-size: cover;
+        align-items: center;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.13);
+
+        &-container {
+            min-width: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        &-title {
+            min-width: 100%;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 800;
+            font-size: rem(18);
+            color: #FFFFFF;
+            text-shadow: 0px 0px rem(20) rgba(0, 0, 0, 0.08);
+        }
+        &-info {
+            display: flex;
+            flex-direction: column;
+            gap: rem(10);
+            min-width: 100%;
+
+            &-preexp {
+                min-width: 100%;
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: rem(16);
+                color: #FFFFFF;
+            }
+            &-wage {
+                min-width: 100%;
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 600;
+                font-size: rem(16);
+                color: #FFFFFF;
+            }
+            &-btn {
+                min-width: 100%;
+                padding-top: rem(4);
+                padding-bottom: rem(4);
+                background: #CBDC88;
+                border: 1px solid #739650;
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+                font-size: rem(15);
+                color: #000000;
+                text-decoration: none !important;
+                cursor: pointer;
+
+                &:hover, &:active {
+                    color: #000;
+                }
+            }
+        }
+    }
 }
 
 // TODO:     @include adaptive-value(float, none, none, none, none, none);
