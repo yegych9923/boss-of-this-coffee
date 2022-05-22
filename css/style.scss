@@ -141,7 +141,7 @@ $container-micro-mobile: rem(360);
     }
     &-catalog {
         margin-top: rem(20);
-        position: relative;
+        //position: relative;
         display: flex;
         justify-content: center;
 
@@ -153,7 +153,7 @@ $container-micro-mobile: rem(360);
             float: left;
             gap: rem(30);
             padding-bottom: rem(26);
-            position: relative;
+            //position: relative;
     
             &::-webkit-scrollbar {
                 width: rem(7);
@@ -492,7 +492,8 @@ body, html {
         display: flex;
         justify-content: center;
         padding: rem(20) rem(30);
-        position: relative;
+        //position: relative;
+        z-index: 99999999999;
         min-width: rem(256);
         min-height: rem(290);
         background: url('../img/vacancies-back.jpg') 50% 50%;
@@ -539,11 +540,14 @@ body, html {
                 color: #FFFFFF;
             }
             &-btn {
+                display: inline-block;
+                max-width: 100%;
                 min-width: 100%;
                 padding-top: rem(4);
                 padding-bottom: rem(4);
                 background: #CBDC88;
-                border: 1px solid #739650;
+                border: rem(2) solid #a2af6d;
+                box-sizing: border-box;
                 font-family: 'Montserrat';
                 font-style: normal;
                 font-weight: 600;
@@ -552,9 +556,112 @@ body, html {
                 color: #000000;
                 text-decoration: none !important;
                 cursor: pointer;
+                transition: all .2s;
 
                 &:hover, &:active {
                     color: #000;
+                }
+                &:hover {
+                    box-shadow: 0 0 rem(6) #72ac4c;
+                    border: rem(2) solid #59743e;
+                }
+            }
+        }
+    }
+}
+.footer {
+    margin-top: rem(120);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(40) 0;
+    background: #E6FFC6;
+    border-top: solid rem(2) #73FF42;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: rem(20);
+    }
+    &-top {
+        display: flex;
+        min-width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+
+        .header-buttons {
+            gap: rem(20);
+            &::before, &:hover, &:active {
+                color: #000000;
+            }
+        }
+    }
+    &-bottom {
+        display: flex;
+        flex-direction: row;
+        gap: rem(50);
+        align-items: center;
+        height: rem(30);
+
+        &-viewMap {
+            display: flex;
+            flex-direction: row;
+            gap: rem(12);
+            align-items: center;
+
+            &-icon {
+                width: auto;
+                height: rem(24);
+            }
+            .anim-link {
+                background-image: linear-gradient(#656565, #656565);
+                background-position: 0% 100%;
+                background-repeat: no-repeat;
+                background-size: 0% rem(1);
+                transition: background-size .2s;
+
+                &:hover {
+                    background-size: 100% rem(1);
+                    color: inherit;
+                }
+            }
+            &-text {
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 400;
+                font-size: rem(16);
+                color: #000000;
+                cursor: pointer;
+                text-decoration: none;
+
+                &::before, &:active, &:hover {
+                    color: #000000;
+                    text-decoration: none;
+                }
+            }
+        }
+        &-schedule {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: rem(16);
+            color: #000000;
+        }
+        &-socNets {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: rem(10);
+
+            & > * {
+                height: 100%;
+                cursor: pointer;
+                transition: all .2s;
+
+                &:hover {
+                    transform: scale(1.08);
                 }
             }
         }
