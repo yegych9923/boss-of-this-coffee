@@ -10,6 +10,8 @@
     @return ($n / $base-font) * 1rem;
 }
 
+// https://www.figma.com/file/QELKGX5u8333Z6ZfE53tNg/Untitled?node-id=0%3A1
+
 $base-font: 16;
 
 $desktop: rem(1200);
@@ -27,22 +29,27 @@ $container-micro-mobile: rem(360);
 @mixin adaptive-container-width() {
     @media screen and (min-width: $desktop) {
         max-width: $container-desktop;
+        min-width: $container-desktop;
     }
 
     @media screen and (min-width: $tablet) and (max-width: $desktop) {
         max-width: $container-tablet;
+        min-width: $container-tablet;
     }
 
     @media screen and (min-width: $mobile) and (max-width: $tablet) {
         max-width: $container-mobile;
+        min-width: $container-mobile;
     }
 
     @media screen and (min-width: $mini-mobile) and (max-width: $mobile) {
         max-width: $container-mini-mobile;
+        min-width: $container-mini-mobile;
     }
 
     @media screen and (max-width: $mini-mobile) and (min-width: 0px) {
         max-width: $container-micro-mobile;
+        min-width: $container-micro-mobile;
     }
 }
 @mixin adaptive-display($display, $min, $max) {
@@ -132,10 +139,15 @@ $container-micro-mobile: rem(360);
             text-decoration: none !important;
             cursor: pointer;
             margin-left: rem(50);
+            transition: all .25s;
 
             &:hover, &:active {
                 text-decoration: none !important;
                 color: #000000;
+            }
+            &:hover {
+                box-shadow: 0 0 rem(12) #75a555;
+                border: rem(2) solid #80a759;
             }
         }
     }
@@ -151,10 +163,10 @@ $container-micro-mobile: rem(360);
             flex-direction: row;
             overflow-x: scroll;
             float: left;
-            gap: rem(30);
+            gap: rem(38.66666);
             padding-bottom: rem(26);
-            //position: relative;
-    
+            position: relative;
+
             &::-webkit-scrollbar {
                 width: rem(7);
                 background: #FFFFFF;
@@ -303,6 +315,10 @@ body, html {
             font-size: rem(16);
             letter-spacing: -0.01rem;
             padding: rem(4) 0;
+
+            &:hover, &:active {
+                color: #000;
+            }
         }
     }
 }
@@ -371,12 +387,78 @@ body, html {
     padding: rem(36) 0;
 }
 .catalog {
-    // TODO: СДЕЛАТЬ КАТАЛОГ И НЕ ЗАБРОСИТЬ ПРОЕКТ
+    margin-top: rem(94);
 
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: rem(70);
+    }
+    &-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &__button {
+            padding: rem(7) rem(15);
+            display: flex;
+            flex-direction: row;
+            gap: rem(10);
+            align-items: center;
+            background: #ffffff;
+            border: rem(2) solid #a2af6d;
+            color: #000000;
+            text-decoration: none !important;
+            cursor: pointer;
+            transition: all .2s;
+
+            &-img {
+                height: rem(16);
+                width: auto;
+            }
+            &-text {
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: rem(15);
+                color: #000000;
+            }
+            &:hover, &:active {
+                color: #000000;
+            }
+            &:hover {
+                box-shadow: 0 0 rem(16) #b4e593;
+                border: rem(2) solid #59743e;
+            }
+        }
+        &__title {
+            font-family: 'Buyan';
+            font-style: normal;
+            font-weight: 700;
+            font-size: rem(32);
+            color: #000000;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            isolation: isolate;
+        }
+    }
+    &-items {
+        //@include adaptive-value(grid-template-columns, 1fr 1fr 1fr 1fr, 1fr 1fr 1fr, 1fr 1fr 1fr, 1fr 1fr, 1fr);
+        min-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(rem(256), 1fr));
+        column-gap: rem(30);
+        row-gap: rem(35);
+        grid-auto-flow: dense;
+    }
     &__item {
         position: relative;
         min-width: rem(256);
+        max-width: rem(256);
         min-height: rem(290);
+        max-height: rem(290);
         background: #FFFFFF;
         align-items: center;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.13);
@@ -493,7 +575,6 @@ body, html {
         justify-content: center;
         padding: rem(20) rem(30);
         //position: relative;
-        z-index: 99999999999;
         min-width: rem(256);
         min-height: rem(290);
         background: url('../img/vacancies-back.jpg') 50% 50%;
@@ -582,28 +663,48 @@ body, html {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        gap: rem(20);
+        gap: rem(24);
     }
     &-top {
+        @include adaptive-value(flex-direction, row, row, row, column, column);
+        @include adaptive-value(justify-content, space-between, space-between, space-between, left, left);
+        @include adaptive-value(align-items, center, center, center, flex-start, flex-start);
         display: flex;
         min-width: 100%;
-        justify-content: space-between;
-        flex-direction: row;
-        align-items: center;
 
-        .header-buttons {
-            gap: rem(20);
-            &::before, &:hover, &:active {
-                color: #000000;
+        &-buttons {
+            @include adaptive-value(flex-direction, row, row, row, row, column);
+            @include adaptive-value(gap, rem(40), rem(40), rem(40), rem(40), rem(6));
+            margin: 0;
+            padding: 0;
+            margin-top: rem(14);
+            display: flex;
+            list-style: none;
+            gap: rem(40);
+    
+            &-item {
+                color: #000;
+                text-decoration: none !important;
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 700;
+                font-size: rem(16);
+                letter-spacing: -0.01rem;
+                padding: rem(4) 0;
+
+                &::before, &:active, &:hover {
+                    color: #000000;
+                    text-decoration: none;
+                }
             }
         }
     }
     &-bottom {
+        @include adaptive-value(flex-direction, row, row, row, column, column);
+        @include adaptive-value(align-items, center, center, center, flex-start, flex-start);
+        @include adaptive-value(gap, rem(50), rem(50), rem(50), rem(10), rem(10));
+        @include adaptive-value(height, rem(30), rem(30), rem(30), auto, auto);
         display: flex;
-        flex-direction: row;
-        gap: rem(50);
-        align-items: center;
-        height: rem(30);
 
         &-viewMap {
             display: flex;
@@ -635,11 +736,10 @@ body, html {
                 color: #000000;
                 cursor: pointer;
                 text-decoration: none;
-
-                &::before, &:active, &:hover {
-                    color: #000000;
-                    text-decoration: none;
-                }
+            }
+            &::before, &:active, &:hover {
+                color: #000000;
+                text-decoration: none;
             }
         }
         &-schedule {
